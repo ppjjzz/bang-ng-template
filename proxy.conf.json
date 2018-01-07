@@ -1,0 +1,13 @@
+{
+    "/api": {
+      "target": "http://localhost:4200",
+      "secure": false,
+      "header": {
+          "cookie": ""
+      },
+      "pathRewrite": {
+        "^/api": ""
+      },
+      "changeOrigin": true
+    }
+  }
