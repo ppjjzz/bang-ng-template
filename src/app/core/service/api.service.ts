@@ -4,16 +4,15 @@ import {
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
 
 import { CookieService } from './cookie';
 import { ApiConfig, ApiUrl } from './config.api';
-import { HTTP_OPTIONS } from './../core.contants';
+import { HTTP_OPTIONS, HttpOptions } from './../core.contants';
 
 @Injectable()
 export class ApiService {
-  baseUrl = '';
-  ApiUrl: ApiUrl;
+  private baseUrl = '';
+  private ApiUrl: ApiUrl;
   constructor(
     private http: HttpClient,
     private cookieSer: CookieService,
@@ -42,12 +41,7 @@ export class ApiService {
    * @returns {Observable<any>} 返回可观察对象
    * @memberof ApiService
    */
-  post(url: string, body?: any, options?: {
-    headers?: HttpHeaders;
-    params?: HttpParams;
-    responseType?: 'json';
-    withCredentials?: boolean;
-  }, hideLoading?: boolean): Observable<any> {
+  post(url: string, body?: any, options?: HttpOptions, hideLoading?: boolean): Observable<any> {
     const _options = this.setRequiresOptions(options);
     return this.http.post(this.getFullUrl(url), body ? body : {}, _options);
   }
@@ -58,17 +52,13 @@ export class ApiService {
    * @param options 请求参数自定义
    * @returns {Observable<>}
    */
-  get(url: string, body?: object, options?: {
-    headers?: HttpHeaders;
-    params?: HttpParams;
-    responseType?: 'json';
-    withCredentials?: boolean;
-  }): Observable<any> {
+  get(url: string, body?: object, options?: HttpOptions): Observable<any> {
     let _options = this.setRequiresOptions(options);
-    const serchParam = this.parseParams(body);
-    _options = Object.assign({}, _options, {
-      params: serchParam
-    });
+    const params = this.parseParams(body);
+    _options = {
+      ..._options,
+      params
+    };
     return this.http.get(this.getFullUrl(url), _options);
   }
 /**
@@ -87,17 +77,11 @@ export class ApiService {
     }
     return ret;
   }
-  setRequiresOptions(options: {
-    headers?: HttpHeaders;
-    params?: HttpParams;
-    responseType?: 'json';
-    withCredentials?: boolean;
-  }) {
-    const _default = HTTP_OPTIONS ? HTTP_OPTIONS : {};
-    if (!options) {
-      return _default;
-    }
-    return Object.assign({}, _default, options);
+  setRequiresOptions(options: HttpOptions = {}) {
+    return {
+      ...HTTP_OPTIONS,
+      ...options
+    };
   }
 
   /**

@@ -12,6 +12,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/finally';
 
 
 
@@ -50,6 +51,8 @@ export class HttpInterceptorService implements HttpInterceptor {
             break;
         }
         return Observable.throw({ res, 'error': '0' });
+      }).finally(() => {
+
       });
   }
 }

@@ -18,6 +18,7 @@ import {
   ],
   exports: [
     FormsModule, ReactiveFormsModule,
+    CommonModule
   ],
   providers: [],
   declarations: []

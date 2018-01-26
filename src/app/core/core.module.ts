@@ -1,6 +1,5 @@
 import { NgModule, APP_INITIALIZER, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
 import { CORE_SERVICES } from './service/index';
@@ -24,7 +23,6 @@ const providers = [
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule,
     HttpClientModule
   ],
   declarations: [],

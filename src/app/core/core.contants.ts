@@ -12,9 +12,10 @@ export const API_ROOT = environment.api;
     withCredentials: false
 }
 */
-interface HttpOptions {
-    headers?: HttpHeaders;
-    params?: HttpParams;
+export interface HttpOptions {
+    headers?: HttpHeaders | {[header: string]: string | string[]};
+    params?: HttpParams | {[param: string]: string | string[]};
+    reportProgress?: boolean;
     responseType?: 'json';
     withCredentials?: boolean;
 }
