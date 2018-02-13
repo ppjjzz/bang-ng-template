@@ -2,36 +2,14 @@ import {
   Injectable
 } from '@angular/core';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Observable } from 'rxjs/Observable';
-
-import { CookieService } from './cookie';
-import { ApiConfig, ApiUrl } from './config.api';
 import { HTTP_OPTIONS, HttpOptions } from './../core.contants';
 
 @Injectable()
 export class ApiService {
-  private baseUrl = '';
-  private ApiUrl: ApiUrl;
   constructor(
-    private http: HttpClient,
-    private cookieSer: CookieService,
-    private apiConfig: ApiConfig,
-  ) {
-    this.ApiUrl = this.apiConfig.load();
-
-  }
-  /**
-   * 设置请求服务器基路径，如 http://localhost:3000
-   *
-   * @param {string} url 如果输入值在环境变量中有配置则取设置预设值,否则取输入值作为基路径
-   * @returns
-   * @memberof ApiService
-   */
-  setBaseUrl(url: string) {
-    this.baseUrl = this.ApiUrl[url] || url;
-    return this;
-  }
+    private http: HttpClient
+  ) { }
   /**
    * post方法
    * @param {string} url  请求地址
@@ -43,7 +21,7 @@ export class ApiService {
    */
   post(url: string, body?: any, options?: HttpOptions, hideLoading?: boolean): Observable<any> {
     const _options = this.setRequiresOptions(options);
-    return this.http.post(this.getFullUrl(url), body ? body : {}, _options);
+    return this.http.post(url, body ? body : {}, _options);
   }
   /**
    * get方法
@@ -59,12 +37,12 @@ export class ApiService {
       ..._options,
       params
     };
-    return this.http.get(this.getFullUrl(url), _options);
+    return this.http.get(url, _options);
   }
-/**
- * get参数格式化
- * @param params
- */
+  /**
+   * get参数格式化
+   * @param params
+   */
   parseParams(params: object): HttpParams {
     let ret = new HttpParams();
     if (params) {
@@ -82,15 +60,5 @@ export class ApiService {
       ...HTTP_OPTIONS,
       ...options
     };
-  }
-
-  /**
-   * Build API url
-   * @param url
-   * @returns {string}
-   */
-  private getFullUrl(url: string): string {
-    // return full URL to API here
-    return this.baseUrl + url;
   }
 }

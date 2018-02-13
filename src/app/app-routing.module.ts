@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'pages',
+        redirectTo: 'routes',
         pathMatch: 'full'
     }
 ];
@@ -23,7 +23,7 @@ const routes: Routes = [
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes, { useHash: true }) // 路由模式默认为哈希
     ],
     exports: [RouterModule]
 })

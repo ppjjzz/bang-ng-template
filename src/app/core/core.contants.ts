@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
 export const ENVIRONMENT = environment;
 
 /* api接口配置 */
-export const API_ROOT = environment.api;
+export const API_ROOT = environment.API_DOMAIN;
 
 /* 配置全局请求头信息
 {

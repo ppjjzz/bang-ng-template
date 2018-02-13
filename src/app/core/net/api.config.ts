@@ -10,16 +10,15 @@ import {
 
 @Injectable()
 export class ApiConfig {
-    private configBaseUrl: string;
-    public config: ApiUrl;
+    public API_DOMAIN: ApiUrl;
     constructor() {
     }
-    public getConfig(key: string): string {
-        return this.config[key];
+    public getDomain(key: string = 'default'): string {
+        return this.API_DOMAIN[key];
     }
     public load(): any  {
-      this.config = API_ROOT;
-      return this.config;
+      this.API_DOMAIN = API_ROOT;
+      return this.API_DOMAIN;
     }
 }
 

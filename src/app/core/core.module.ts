@@ -2,20 +2,18 @@ import { NgModule, APP_INITIALIZER, ModuleWithProviders, Optional, SkipSelf } fr
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
-import { CORE_SERVICES } from './service/index';
+import { NET_SERVICES } from './net/index';
 import { CoreService } from './core.service';
 
-import { ApiConfig } from './service/config.api';
+import { ApiConfig } from './net/api.config';
 
-export function configFactory(config: ApiConfig ) {
-  return function () {
-      config.load();
-  };
+export function configFactory(config: ApiConfig) {
+  return () => config.load();
 }
 
 const providers = [
   CoreService,
-  CORE_SERVICES,
+  NET_SERVICES,
   { provide: APP_INITIALIZER, useFactory: configFactory, deps: [ApiConfig], multi: true }
 ];
 
@@ -36,9 +34,9 @@ export class CoreModule {
     }
   }
   static forRoot(): ModuleWithProviders {
-      return {
-          ngModule: CoreModule,
-          providers
-      };
+    return {
+      ngModule: CoreModule,
+      providers
+    };
   }
- }
+}

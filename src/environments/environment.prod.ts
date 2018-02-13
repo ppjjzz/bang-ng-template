@@ -3,7 +3,7 @@
 export const environment = {
   production: true,
   /* 配置不同接口的基路径 */
-  api: {
-
+  API_DOMAIN: {
+    'defalut': ''
   }
 };

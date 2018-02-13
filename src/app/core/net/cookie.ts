@@ -62,7 +62,7 @@ export class CookieService {
    *
    * @param  {string} name Cookie's identification
    * @param  {string} value Cookie's value
-   * @param  {number} expires Cookie's expiration date in days from now or at a specific date from a Date object. If it's undefined the cookie is a session Cookie
+   * @param  {number} expires Cookie's expiration date in days from now or at a specific date from a Date object.
    * @param  {string} path Path relative to the domain where the cookie should be avaiable. Default /
    * @param  {string} domain Domain where the cookie should be avaiable. Default current domain
    * @param  {boolean} secure If true, the cookie will only be available through a secured connection

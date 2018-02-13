@@ -1,15 +1,14 @@
 import { Provider } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { CookieService } from './cookie';
 import { ApiService } from './api.service';
 import { HttpInterceptorService } from './http-interceptor';
-import { ApiConfig } from './config.api';
+import { ApiConfig } from './api.config';
 
 
 
-export const CORE_SERVICES: Provider = [
+export const NET_SERVICES: Provider = [
     ApiService,
     ApiConfig,
     CookieService,
