@@ -28,5 +28,5 @@ npm run build:test
 - Typescript >= 2.6.0
 - angular-cli >= 1.7.0
 
-## 项目开发相关文档
+## 项目开发相关文档
 - [开发文档](./docs/index.md)
