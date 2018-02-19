@@ -108,7 +108,7 @@ import { ApiService } from '@core/net/api.service';
 示例
 ```
 {
-    "/api": {     //配置拦截规则，该示例表示所有/api开头的请求都会被转发
+    "/api": {     //配置拦截规则，该示例表示所有/api开头的请求都会被转发
       "target": "http://localhost:4200",  //转发到后台接口域名和端口
       "secure": false,
       "header": {
@@ -125,7 +125,7 @@ import { ApiService } from '@core/net/api.service';
 ### 环境变量
 
 - 环境变量配置文件配置目录为*src/app/environments*
-- 共配置了3套环境，可根据各项目组需求增减。environment为默认本地开发环境, test为测试环境, prod为生产环境
+- 共配置了3套环境，可根据各项目组需求增减。environment为默认本地开发环境, test为测试环境, prod为生产环境
 
 ### 缓存及加载策略优化
 
