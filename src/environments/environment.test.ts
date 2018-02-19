@@ -1,7 +1,7 @@
 // 测试环境
 
 export const environment = {
-    production: false,
+    production: true,
     /* 配置不同接口的基路径 */
     API_DOMAIN: {
         'default': ''

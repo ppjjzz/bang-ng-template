@@ -7,10 +7,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgShowDirective } from '@share/directives/ngShow';
 
 /* 注册共享的组件,指令和管道 */
 const COMPONENTS = [];
-const DIRECTIVES = [];
+const DIRECTIVES = [
+  NgShowDirective
+];
 const PIPES = [];
 
 @NgModule({

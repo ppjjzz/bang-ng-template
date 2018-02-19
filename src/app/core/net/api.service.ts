@@ -12,23 +12,22 @@ export class ApiService {
   ) { }
   /**
    * post方法
-   * @param {string} url  请求地址
-   * @param {string} body
-   * @param {RequestOptionsArgs} [options]
-   * @param {boolean} [hideLoading]
+   * @param {string} url  请求地址,必填
+   * @param {string} body 请求参数,非必填
+   * @param {RequestOptionsArgs} options 请求头选项,非必填
    * @returns {Observable<any>} 返回可观察对象
    * @memberof ApiService
    */
-  post(url: string, body?: any, options?: HttpOptions, hideLoading?: boolean): Observable<any> {
+  post(url: string, body?: any, options?: HttpOptions): Observable<any> {
     const _options = this.setRequiresOptions(options);
     return this.http.post(url, body ? body : {}, _options);
   }
   /**
    * get方法
-   * @param url 必填，路径地址
-   * @param body 查询条件
-   * @param options 请求参数自定义
-   * @returns {Observable<>}
+   * @param url 请求路径地址,必填
+   * @param body 请求参数,非必填
+   * @param options 请求头选项,非必填
+   * @returns {Observable<>} 返回可观察对象
    */
   get(url: string, body?: object, options?: HttpOptions): Observable<any> {
     let _options = this.setRequiresOptions(options);
@@ -41,7 +40,7 @@ export class ApiService {
   }
   /**
    * get参数格式化
-   * @param params
+   * @param params 请求参数
    */
   parseParams(params: object): HttpParams {
     let ret = new HttpParams();
