@@ -4,7 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { PagesModule } from './view/routes/routes.module';
 import { AppComponent } from './app.component';
-
+import { environment } from '@env/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,9 @@ import { AppComponent } from './app.component';
     BrowserModule,
     CoreModule,
     PagesModule,
-    AppRoutingModule
+    AppRoutingModule,
+    /* 默认打包环境为prod时注册ServiceWorker,如不需要可以注释掉,相关配置可以参考英文官网 */
+    environment.env === 'prod' ? ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }) : []
   ],
   providers: [],
   bootstrap: [AppComponent]

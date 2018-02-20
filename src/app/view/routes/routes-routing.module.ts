@@ -6,8 +6,15 @@ const routes: Routes = [
       path: '',
       component: RoutesComponent,
       children: [
-        {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
-        {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'}
+        {
+          path: 'dashboard',
+          loadChildren: './dashboard/dashboard.module#DashboardModule'
+        },
+        {
+          path: '',
+          pathMatch: 'full',
+          redirectTo: 'dashboard'
+        }
       ]
     },
 ];

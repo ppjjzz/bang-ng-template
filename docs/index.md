@@ -35,6 +35,7 @@
 │   ├── favicon.ico      //网页logo
 │   ├── index.html       //主页html
 │   ├── main.ts          //应用入口
+│   ├── ngsw-config.json //Service Worker配置文件
 │   ├── polyfills.ts     //填充库
 │   ├── styles           //全局样式库相关
 │   ├── styles.scss      //全局样式文件入口
@@ -131,6 +132,7 @@ import { ApiService } from '@core/net/api.service';
 
 - *index.html*做了强制不缓存处理,解决项目更新迭代时需要用户浏览器手动清缓存才能获取最新静态文件的问题
 - 在任意一个路由页面加载后的5秒后浏览器自动请求剩余路由模块js,方便浏览器请求其他路由页面时读取已缓存的模块立即渲染。相关配置参考*src/app/app-routing.module.ts*
+- 打包环境为*prod*时默认注册Service Worker
 
 ## Angular项目开发规范
 - [开发规范](./code_specs.md)

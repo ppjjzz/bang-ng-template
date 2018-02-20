@@ -33,10 +33,4 @@ export class CoreModule {
         '核心模块CoreModule已经引入，只允许在根模块内导入核心模块');
     }
   }
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: CoreModule,
-      providers
-    };
-  }
 }
