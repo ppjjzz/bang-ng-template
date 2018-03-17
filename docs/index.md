@@ -131,7 +131,7 @@ import { ApiService } from '@core/net/api.service';
 ### 缓存及加载策略优化
 
 - *index.html*做了强制不缓存处理,解决项目更新迭代时需要用户浏览器手动清缓存才能获取最新静态文件的问题
-- 在任意一个路由页面加载后的5秒后浏览器自动请求剩余路由模块js,方便浏览器请求其他路由页面时读取已缓存的模块立即渲染。相关配置参考*src/app/app-routing.module.ts*
+- 在任意一个路由页面加载后的5秒后浏览器自动请求剩余路由模块js,方便浏览器请求其他路由页面时读取已缓存的模块立即渲染。相关配置参考*src/app/core/router/preload-routers.service.ts*
 - 打包环境为*prod*时默认注册Service Worker
 
 ## Angular项目开发规范

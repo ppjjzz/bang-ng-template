@@ -9,6 +9,8 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 import { tap, mergeMap, finalize, catchError } from 'rxjs/operators';
+import { _throw } from 'rxjs/observable/throw';
+import * as NProgress from 'nprogress';
 
 
 
@@ -22,6 +24,7 @@ export class HttpInterceptorService implements HttpInterceptor {
   constructor() {
   }
   intercept = (req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> => {
+    NProgress.start(); // 显示顶部加载进度条
     /* 设置全局的请求头 */
     const newReq = req.clone({
     });
@@ -29,12 +32,16 @@ export class HttpInterceptorService implements HttpInterceptor {
       tap((res: any) => {
       })
       , mergeMap((event: any) => {
-        if (event instanceof HttpResponse && event.status !== 200 || !event.body.success) {
+        if (event instanceof HttpResponse && (event.status !== 200 || !event.body.success)) {
           return Observable.create(observer => observer.error(event));
+        }
+        if (event instanceof HttpResponse) {
+          NProgress.done();
         }
         return Observable.create(observer => observer.next(event));
       })
       , catchError((res: HttpResponse<any>) => {
+        NProgress.done();
         switch (res.status) {
           case 401:
             // 拦截到401错误
@@ -47,7 +54,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
             break;
         }
-        return Observable.throw({ res, 'error': '0' });
+        return _throw(res);
       }), finalize(() => {
 
       })
