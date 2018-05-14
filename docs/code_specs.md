@@ -55,6 +55,10 @@
 - 对于声明后不再重新赋值的变量需改成const常量声明
 - 需导出的常量命名使用大写字母，使用下划线分割，如：`export const ENVIRONMENT = environment;`
 
+### 接口声明
+- 限定类型的接口名称以大写I开头，如：`IHttpResponse`
+- 实现类接口以Impl结尾，如：`UtilImpl`
+
 ### 类公开，私有和静态的属性和方法声明
 - 公开属性和方法不用特别声明，ts已默认
 - 只供类内部调用的方法和属性需声明为私有如`private fullUrl: string;`，可以避免注入到组件内被调用或赋值

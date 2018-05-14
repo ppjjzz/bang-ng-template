@@ -1,10 +1,8 @@
-import { NgModule, APP_INITIALIZER, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
+import { NgModule, APP_INITIALIZER, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-
 import { NET_SERVICES } from './net/index';
 import { CoreService } from './core.service';
-
 import { ApiConfig } from './net/api.config';
 
 export function configFactory(config: ApiConfig) {
@@ -13,7 +11,7 @@ export function configFactory(config: ApiConfig) {
 
 const providers = [
   CoreService,
-  NET_SERVICES,
+  NET_SERVICES, // AJAX请求服务
   { provide: APP_INITIALIZER, useFactory: configFactory, deps: [ApiConfig], multi: true }
 ];
 

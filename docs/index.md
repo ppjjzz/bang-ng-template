@@ -6,9 +6,9 @@
 
 - 该模板预设了一些扩展和优化,做到开箱即用
 
-- Angular版本 5.2.5, Angular-cli版本1.7.0
+- Angular版本 6.0 Angular-cli版本6.0
 
-- CSS预处理器默认SCSS
+- CSS预处理器默认LESS
 
 - [GitHub地址](https://github.com/2070255/bang-ng-template)
 
@@ -23,8 +23,8 @@
 │   ├── code_specs.md
 │   └── index.md
 ├── e2e
-├── karma.conf.js
-├── package-lock.json
+├── ngsw-config.json     //Service Worker配置文件
+├── yarn.lock
 ├── package.json         //项目依赖和npm脚本配置
 ├── protractor.conf.js
 ├── proxy.conf.json      //配置开发环境的反向代理
@@ -32,24 +32,27 @@
 │   ├── app              //应用代码
 │   ├── assets           //存放静态资源目录,如图片、字体图标
 │   ├── environments     //配置环境变量相关
+│   ├── browserslist     //配置CSS浏览器前缀兼容程度
 │   ├── favicon.ico      //网页logo
 │   ├── index.html       //主页html
+│   ├── karma.conf.js
 │   ├── main.ts          //应用入口
-│   ├── ngsw-config.json //Service Worker配置文件
+│   ├── manifest.json
 │   ├── polyfills.ts     //填充库
 │   ├── styles           //全局样式库相关
-│   ├── styles.scss      //全局样式文件入口
+│   ├── styles.less      //全局样式文件入口
 │   ├── test.ts
-│   ├── tsconfig.app.json
-│   ├── tsconfig.spec.json
-│   └── typings.d.ts
-├── tsconfig.json       //ts配置
-└── tslint.json         //tslint配置
+│   ├── tsconfig.app.json //项目ts配置
+│   ├── tsconfig.spec.json //项目tslint配置
+│   └── tslint.json
+├── tsconfig.json       //全局ts配置
+└── tslint.json         //全局tslint配置
 ```
 
 app目录:
 ```
 .
+├── abstract                //抽象类统一存放目录
 ├── api                     //应用API统一存放目录
 ├── app-routing.module.ts   //根路由模块
 ├── app.component.ts        //根组件
@@ -62,12 +65,13 @@ app目录:
 │   ├── router              //路由预加载,路由守卫配置
 │   └── readme.md
 ├── share                   //共享模块目录
+│   ├── component           //公用组件目录
+│   ├── directives          //公用指令目录
 │   ├── README.md
 │   └── share.module.ts
+├── store                   //存放全局状态
 ├── utils                   //工具类相关
-└── view                    //视图相关目录
-    ├── layout              //布局类的容器型组件目录
-    └── routes              //应用子路由组件
+└── view                    //应用子路由组件
 ```
 - 核心模块：核心模块封装了http请求类、拦截器，等核心服务；
 - 共享模块：共享的模块，一般放一些共享的模块如指令,组件等等；
@@ -80,8 +84,10 @@ app目录:
 
 - 对常用路径做了简称处理,方便快速书写引入路径,配置项参考根目录tsconfig.json
 
-```
+```json
 "paths": {
+      "@abstract": [ "app/abstract" ],
+      "@abstract/*": [ "app/abstract/*" ],
       "@share": [ "app/share" ],
       "@share/*": [ "app/share/*" ],
       "@core": [ "app/core/" ],
@@ -91,12 +97,14 @@ app目录:
       "@utils": [ "app/utils/" ],
       "@utils/*": [ "app/utils/*" ],
       "@env": [ "environments/" ],
-      "@env/*": [ "environments/*" ]
+      "@env/*": [ "environments/*" ],
+      "@app": [ "app/" ],
+      "@app/*": [ "app/*" ]
     }
 ```
 
 示例
-```
+```ts
 // src/app/api/user.service.ts
 import { ApiService } from '@core/net/api.service';
 ```
@@ -107,7 +115,7 @@ import { ApiService } from '@core/net/api.service';
 
 
 示例
-```
+```json
 {
     "/api": {     //配置拦截规则，该示例表示所有/api开头的请求都会被转发
       "target": "http://localhost:4200",  //转发到后台接口域名和端口
@@ -126,12 +134,12 @@ import { ApiService } from '@core/net/api.service';
 ### 环境变量
 
 - 环境变量配置文件配置目录为*src/app/environments*
-- 共配置了3套环境，可根据各项目组需求增减。environment为默认本地开发环境, test为测试环境, prod为生产环境
+- 共配置了3套环境，可根据各项目组需求增减。environment为默认本地开发环境, inner为测试环境, prod为生产环境
 
 ### 缓存及加载策略优化
 
 - *index.html*做了强制不缓存处理,解决项目更新迭代时需要用户浏览器手动清缓存才能获取最新静态文件的问题
-- 在任意一个路由页面加载后的5秒后浏览器自动请求剩余路由模块js,方便浏览器请求其他路由页面时读取已缓存的模块立即渲染。相关配置参考*src/app/core/router/preload-routers.service.ts*
+- 在任意一个路由页面加载后的5秒后浏览器自动请求剩余路由模块js,方便浏览器请求其他路由页面时读取已缓存的模块立即渲染。相关配置参考*src/app/app-routing.module.ts*
 - 打包环境为*prod*时默认注册Service Worker
 
 ## Angular项目开发规范

@@ -1,8 +1,8 @@
 import {
   Injectable
 } from '@angular/core';
-import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpParams, HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { HTTP_OPTIONS, HttpOptions } from './../core.contants';
 
 @Injectable()

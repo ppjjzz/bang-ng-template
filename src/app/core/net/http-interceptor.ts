@@ -4,17 +4,12 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpResponse
+  HttpResponse,
+  HttpInterceptor
 } from '@angular/common/http';
-
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  throwError as _throw } from 'rxjs';
 import { tap, mergeMap, finalize, catchError } from 'rxjs/operators';
-import { _throw } from 'rxjs/observable/throw';
 import * as NProgress from 'nprogress';
-
-
-
-import { HttpInterceptor } from '@angular/common/http';
 
 /**
  * @export 返回拦截器类
@@ -49,8 +44,17 @@ export class HttpInterceptorService implements HttpInterceptor {
             break;
           case 200:
             // 业务层级错误处理
+            if (res.body.msg) {
+              // const params = req.method === 'POST' ? JSON.stringify(req.body) : null;
+            }
             break;
           case 404:
+
+            break;
+          case 500:
+
+            break;
+          default:
 
             break;
         }
@@ -58,7 +62,7 @@ export class HttpInterceptorService implements HttpInterceptor {
       }), finalize(() => {
 
       })
-    );
+    ) as Observable<HttpEvent<any>>;
   }
 }
 

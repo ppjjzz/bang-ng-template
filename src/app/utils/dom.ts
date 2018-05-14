@@ -98,3 +98,16 @@ export function setStyle(element: HTMLElement, styleName: object | string, value
         element.style[<string>styleName] = value;
     }
 }
+
+export function removeNgTag (nativeElement: HTMLElement): void {
+    const parentElement = nativeElement.parentElement;
+    if (!parentElement || !parentElement.insertBefore) { return; }
+    while (nativeElement.firstChild) {
+        parentElement.insertBefore(nativeElement.firstChild, nativeElement);
+    }
+    parentElement.removeChild(nativeElement);
+}
+/**
+ * 获取DOM元素
+ */
+export const $ = document.querySelector.bind(document);

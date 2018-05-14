@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "noUnusedLocals": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -12,11 +13,14 @@
       "node_modules/@types"
     ],
     "lib": [
+      "es2018",
       "es2017",
       "dom"
     ],
     "baseUrl": "src/",
     "paths": {
+      "@abstract": [ "app/abstract" ],
+      "@abstract/*": [ "app/abstract/*" ],
       "@share": [ "app/share" ],
       "@share/*": [ "app/share/*" ],
       "@core": [ "app/core/" ],
@@ -26,7 +30,9 @@
       "@utils": [ "app/utils/" ],
       "@utils/*": [ "app/utils/*" ],
       "@env": [ "environments/" ],
-      "@env/*": [ "environments/*" ]
+      "@env/*": [ "environments/*" ],
+      "@app": [ "app/" ],
+      "@app/*": [ "app/*" ]
     }
   }
 }
