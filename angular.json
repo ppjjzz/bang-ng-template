@@ -71,6 +71,14 @@
               "buildOptimizer": true,
               "serviceWorker": true
             },
+            "hmr": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hmr.ts"
+                }
+              ]
+            },
             "inner": {
               "fileReplacements": [
                 {
@@ -102,6 +110,9 @@
             },
             "inner": {
               "browserTarget": "bang-ng-template-v6:build:inner"
+            },
+            "hmr": {
+              "browserTarget": "bang-ng-template-v6:build:hmr"
             }
           }
         },

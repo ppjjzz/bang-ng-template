@@ -5,6 +5,7 @@
 export const environment = {
   env: 'dev',
   production: false,
+  hmr: false,
   /* 配置不同接口的基路径 */
   API_DOMAIN: {
     'default': '', // 开发环境默认所有请求加上/api便于反向代理拦截
