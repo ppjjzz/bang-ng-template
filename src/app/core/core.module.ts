@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NET_SERVICES } from './net/index';
 import { CoreService } from './core.service';
-import { ApiConfig } from './net/api.config';
+import { StartupService } from './startup.service';
 
-export function configFactory(config: ApiConfig) {
+export function configFactory(config: StartupService) {
   return () => config.load();
 }
 
 const providers = [
   CoreService,
   NET_SERVICES, // AJAX请求服务
-  { provide: APP_INITIALIZER, useFactory: configFactory, deps: [ApiConfig], multi: true }
+  { provide: APP_INITIALIZER, useFactory: configFactory, deps: [StartupService], multi: true }
 ];
 
 

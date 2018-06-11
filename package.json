@@ -25,6 +25,7 @@
     "@angular/router": "^6.0.0",
     "@angular/service-worker": "^6.0.0",
     "core-js": "^2.5.4",
+    "ng-zorro-antd": "^1.0.0",
     "nprogress": "^0.2.0",
     "rxjs": "^6.0.0",
     "web-storage-cache": "^1.0.3",

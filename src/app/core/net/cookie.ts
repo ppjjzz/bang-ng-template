@@ -4,7 +4,9 @@ import {
 /**
  * Class Cookie - Holds static functions to deal with Cookies
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CookieService {
   /**
    * Checks the existence of a single cookie by it's name

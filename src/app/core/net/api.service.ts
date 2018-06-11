@@ -3,9 +3,11 @@ import {
 } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { HTTP_OPTIONS, HttpOptions } from './../core.contants';
+import { HTTP_OPTIONS, HttpOptions, API_ROOT } from './../core.contants';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ApiService {
   constructor(
     private http: HttpClient
@@ -59,5 +61,12 @@ export class ApiService {
       ...HTTP_OPTIONS,
       ...options
     };
+  }
+  /**
+   * 获取环境对应的请求域名
+   * @param {string} key 默认为default
+   */
+  getDomain(key: string = 'default'): string {
+    return API_ROOT[key];
   }
 }

@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ExampleComponent } from './component/layout/example/example.component';
 import { NgShowDirective } from '@share/directives/ngShow';
 
@@ -24,12 +25,14 @@ const PIPES = [];
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgZorroAntdModule
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgZorroAntdModule,
     ...COMPONENTS,
     ...DIRECTIVES,
     ...PIPES
