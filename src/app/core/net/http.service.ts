@@ -4,26 +4,31 @@ import {
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HTTP_OPTIONS, HttpOptions, API_ROOT } from './../core.contants';
+import { IHttpResponse } from '@core/net/HttpResponse';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class HttpService {
   constructor(
     private http: HttpClient
   ) { }
+  post(url: string, body?: any | null, options?: HttpOptions): Observable<IHttpResponse<any>>;
+  post<T>(url: string, body?: any | null, options?: HttpOptions): Observable<IHttpResponse<T>>;
   /**
    * post方法
    * @param {string} url  请求地址,必填
    * @param {string} body 请求参数,非必填
    * @param {RequestOptionsArgs} options 请求头选项,非必填
    * @returns {Observable<any>} 返回可观察对象
-   * @memberof ApiService
+   * @memberof HttpService
    */
-  post(url: string, body?: any, options?: HttpOptions): Observable<any> {
-    const _options = this.setRequiresOptions(options);
+  post(url: string, body?: any | null, options?: HttpOptions): Observable<any> {
+    const _options: any = this.setRequiresOptions(options);
     return this.http.post(url, body ? body : {}, _options);
   }
+  get<T>(url: string, body?: object, options?: HttpOptions): Observable<IHttpResponse<T>>;
+  get(url: string, body?: object, options?: HttpOptions): Observable<IHttpResponse<any>>;
   /**
    * get方法
    * @param url 请求路径地址,必填
@@ -32,7 +37,7 @@ export class ApiService {
    * @returns {Observable<>} 返回可观察对象
    */
   get(url: string, body?: object, options?: HttpOptions): Observable<any> {
-    let _options = this.setRequiresOptions(options);
+    let _options: any = this.setRequiresOptions(options);
     const params = this.parseParams(body);
     _options = {
       ..._options,
