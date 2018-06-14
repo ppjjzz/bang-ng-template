@@ -113,6 +113,7 @@
               "browserTarget": "bang-ng-template-v6:build:inner"
             },
             "hmr": {
+              "hmr": true,
               "browserTarget": "bang-ng-template-v6:build:hmr"
             }
           }

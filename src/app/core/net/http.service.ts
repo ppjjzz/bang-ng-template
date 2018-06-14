@@ -13,8 +13,6 @@ export class HttpService {
   constructor(
     private http: HttpClient
   ) { }
-  post(url: string, body?: any | null, options?: HttpOptions): Observable<IHttpResponse<any>>;
-  post<T>(url: string, body?: any | null, options?: HttpOptions): Observable<IHttpResponse<T>>;
   /**
    * post方法
    * @param {string} url  请求地址,必填
@@ -23,12 +21,13 @@ export class HttpService {
    * @returns {Observable<any>} 返回可观察对象
    * @memberof HttpService
    */
+  post(url: string, body?: any | null, options?: HttpOptions): Observable<IHttpResponse<any>>;
+  post<T>(url: string, body?: any | null, options?: HttpOptions): Observable<IHttpResponse<T>>;
   post(url: string, body?: any | null, options?: HttpOptions): Observable<any> {
     const _options: any = this.setRequiresOptions(options);
     return this.http.post(url, body ? body : {}, _options);
   }
-  get<T>(url: string, body?: object, options?: HttpOptions): Observable<IHttpResponse<T>>;
-  get(url: string, body?: object, options?: HttpOptions): Observable<IHttpResponse<any>>;
+  
   /**
    * get方法
    * @param url 请求路径地址,必填
@@ -36,6 +35,8 @@ export class HttpService {
    * @param options 请求头选项,非必填
    * @returns {Observable<>} 返回可观察对象
    */
+  get(url: string, body?: object, options?: HttpOptions): Observable<IHttpResponse<any>>;
+  get<T>(url: string, body?: object, options?: HttpOptions): Observable<IHttpResponse<T>>;
   get(url: string, body?: object, options?: HttpOptions): Observable<any> {
     let _options: any = this.setRequiresOptions(options);
     const params = this.parseParams(body);
