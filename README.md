@@ -1,6 +1,6 @@
 # BangNgTemplate
 
-棒谷OA研发中心Angular项目通用初始化模板,基于Angular 6.0
+Angular项目通用初始化模板,基于Angular 6.0
 
 ## 运行
 
