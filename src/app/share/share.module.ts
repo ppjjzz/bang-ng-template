@@ -10,6 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ExampleComponent } from './component/layout/example/example.component';
 import { NgShowDirective } from '@share/directives/ngShow';
+import { MappingPipe } from '@share/pipe/mapping.pipe';
+import { DictPipe } from '@share/pipe/dict.pipe';
+import { ModifyPipe } from '@share/pipe/modify.pipe';
 
 /* 注册共享的组件,指令和管道 */
 const COMPONENTS = [
@@ -18,7 +21,11 @@ const COMPONENTS = [
 const DIRECTIVES = [
   NgShowDirective
 ];
-const PIPES = [];
+const PIPES = [
+  MappingPipe,
+  DictPipe,
+  ModifyPipe
+];
 
 @NgModule({
   imports: [

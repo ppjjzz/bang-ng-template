@@ -6,7 +6,7 @@
 
 - 该模板预设了一些扩展和优化,做到开箱即用
 
-- Angular版本 6.0 Angular-cli版本6.0
+- Angular版本 7.0 Angular-cli版本7.0
 
 - CSS预处理器默认LESS
 

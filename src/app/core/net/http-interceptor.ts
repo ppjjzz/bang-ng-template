@@ -10,6 +10,7 @@ import {
 import { Observable ,  throwError as _throw } from 'rxjs';
 import { tap, mergeMap, finalize, catchError } from 'rxjs/operators';
 import * as NProgress from 'nprogress';
+import { INTERCEPTOR_WHITE_LIST } from './interceptor-white-list';
 
 /**
  * @export 返回拦截器类
@@ -27,7 +28,10 @@ export class HttpInterceptorService implements HttpInterceptor {
       tap((res: any) => {
       })
       , mergeMap((event: any) => {
-        if (event instanceof HttpResponse && (event.status !== 200 || !event.body.success)) {
+        const IS_REQUEST_WHITE_LIST = INTERCEPTOR_WHITE_LIST.some(x => {
+          return newReq.url.includes(x);
+        });
+        if (event instanceof HttpResponse && (event.status !== 200 || (!event.body.success && !IS_REQUEST_WHITE_LIST))) {
           return Observable.create(observer => observer.error(event));
         }
         if (event instanceof HttpResponse) {

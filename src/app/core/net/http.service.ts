@@ -3,8 +3,15 @@ import {
 } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { HTTP_OPTIONS, HttpOptions, API_ROOT } from './../core.contants';
+import { HTTP_OPTIONS, HttpOptions } from '@core/core.contants';
 import { IHttpResponse } from '@core/net/HttpResponse';
+import { environment } from '@env/environment';
+
+/* 环境配置 */
+export const ENVIRONMENT = environment;
+
+/* api接口配置 */
+export const API_ROOT = ENVIRONMENT.API_DOMAIN;
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +34,7 @@ export class HttpService {
     const _options: any = this.setRequiresOptions(options);
     return this.http.post(url, body ? body : {}, _options);
   }
-  
+
   /**
    * get方法
    * @param url 请求路径地址,必填

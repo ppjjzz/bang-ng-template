@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "bang-ng-template-v6": {
+    "bang-ng-template-v7": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -36,7 +36,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/bang-ng-template-v6",
+            "outputPath": "dist/bang-ng-template-v7",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -44,7 +44,12 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.json"
+              "src/manifest.json",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css",
@@ -70,7 +75,14 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "serviceWorker": true
+              "serviceWorker": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             },
             "hmr": {
               "fileReplacements": [
@@ -103,25 +115,25 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bang-ng-template-v6:build"
+            "browserTarget": "bang-ng-template-v7:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "bang-ng-template-v6:build:production"
+              "browserTarget": "bang-ng-template-v7:build:production"
             },
             "inner": {
-              "browserTarget": "bang-ng-template-v6:build:inner"
+              "browserTarget": "bang-ng-template-v7:build:inner"
             },
             "hmr": {
               "hmr": true,
-              "browserTarget": "bang-ng-template-v6:build:hmr"
+              "browserTarget": "bang-ng-template-v7:build:hmr"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bang-ng-template-v6:build"
+            "browserTarget": "bang-ng-template-v7:build"
           }
         },
         "test": {
@@ -156,7 +168,7 @@
         }
       }
     },
-    "bang-ng-template-v6-e2e": {
+    "bang-ng-template-v7-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -164,7 +176,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "bang-ng-template-v6:serve"
+            "devServerTarget": "bang-ng-template-v7:serve"
           }
         },
         "lint": {
@@ -179,5 +191,5 @@
       }
     }
   },
-  "defaultProject": "bang-ng-template-v6"
+  "defaultProject": "bang-ng-template-v7"
 }
