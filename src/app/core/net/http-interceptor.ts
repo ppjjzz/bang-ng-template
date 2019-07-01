@@ -32,12 +32,12 @@ export class HttpInterceptorService implements HttpInterceptor {
           return newReq.url.includes(x);
         });
         if (event instanceof HttpResponse && (event.status !== 200 || (!event.body.success && !IS_REQUEST_WHITE_LIST))) {
-          return Observable.create(observer => observer.error(event));
+          return new Observable(observer => observer.error(event));
         }
         if (event instanceof HttpResponse) {
           NProgress.done();
         }
-        return Observable.create(observer => observer.next(event));
+        return new Observable(observer => observer.next(event));
       })
       , catchError((res: HttpResponse<any>) => {
         NProgress.done();
